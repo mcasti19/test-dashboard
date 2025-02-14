@@ -23,12 +23,9 @@ const links = [
     },
 ]
 
-
 export const NavLinks = () => {
-
     const pathName = usePathname();
-    console.log(pathName);
-
+    // console.log(pathName);
 
     return (
         <>
@@ -38,7 +35,7 @@ export const NavLinks = () => {
                     <Link
                         key={x.name}
                         href={x.href}
-                        className={`flex h-12 grow items-center justify-center gap-2 rounded-md bg-slate-800 p-3 text-lg text-white font-bold hover:bg-slate-700 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3 ${pathName === x.href && "bg-slate-700"}`}
+                        className={twMerge("flex h-12 grow items-center justify-center gap-2 rounded-md bg-slate-800 p-3 text-lg text-white font-bold hover:bg-slate-700 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3", pathName === x.href && "bg-slate-700")}
                     >
                         <LinIcon className='w-6' />
                         <p className="hidden md:block">
@@ -53,19 +50,5 @@ export const NavLinks = () => {
 
 
 
-//* Usando Tailwind Merge quedaria asi, pero o me gusta
-// {links.map(x => {
-//     const LinIcon = x.icon;
-//     return (
-//         <Link
-//             key={x.name}
-//             href={x.href}
-//             className={twMerge("flex h-12 grow items-center justify-center gap-2 rounded-md bg-slate-800 p-3 text-lg text-white font-bold hover:bg-slate-700 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3", pathName === x.href && "bg-slate-700")}
-//         >
-//             <LinIcon className='w-6' />
-//             <p className="hidden md:block">
-//                 {x.name}
-//             </p>
-//         </Link>
-//     )
-// })}
+//* ASi quedaria sin usar Tailwind Merge
+// className={`flex h-12 grow items-center justify-center gap-2 rounded-md bg-slate-800 p-3 text-lg text-white font-bold hover:bg-slate-700 hover:text-white md:flex-none md:justify-start md:p-2 md:px-3 ${pathName === x.href && "bg-slate-700"}`}

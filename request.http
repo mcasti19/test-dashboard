@@ -1,0 +1,74 @@
+GET https://moises-api.vercel.app/ HTTP/1.1
+
+
+### REGISTER
+POST  https://moises-api.vercel.app/auth/register HTTP/1.1
+Content-Type: application/json
+
+{
+    "name":"nextTutorial2",
+    "username":"nextTutorial2",
+    "email":"nextTutorial2@test.com",
+    "password":"123123",
+    "roles":["admin", "manager"]
+}
+
+### LOGIN
+POST  https://moises-api.vercel.app/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email":"nextTutorial2@test.com",
+    "password":"123123"
+}
+
+
+### CONSULTAS DE USUARIOS
+GET https://moises-api.vercel.app/users HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU3MTQ1MCwiZXhwIjoxNzM5NTc1MDUwfQ.mQ0b9wO8DrBYro8B0lC-sdiDCmZOLMDrQO44wa2K1dA
+
+
+
+### COSTUMER COUNT
+GET https://moises-api.vercel.app/customer/count HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU3MTQ1MCwiZXhwIjoxNzM5NTc1MDUwfQ.mQ0b9wO8DrBYro8B0lC-sdiDCmZOLMDrQO44wa2K1dA
+
+
+### GET REVENUES
+GET https://moises-api.vercel.app/revenues HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU3MTQ1MCwiZXhwIjoxNzM5NTc1MDUwfQ.mQ0b9wO8DrBYro8B0lC-sdiDCmZOLMDrQO44wa2K1dA
+
+
+
+
+### GET INVOICES
+GET https://moises-api.vercel.app/invoices HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU3MTQ1MCwiZXhwIjoxNzM5NTc1MDUwfQ.mQ0b9wO8DrBYro8B0lC-sdiDCmZOLMDrQO44wa2K1dA
+
+### GET INVOICES COUNT
+GET https://moises-api.vercel.app/invoices/count HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU3MTQ1MCwiZXhwIjoxNzM5NTc1MDUwfQ.mQ0b9wO8DrBYro8B0lC-sdiDCmZOLMDrQO44wa2K1dA
+
+### GET INVOICES STATUS
+GET https://moises-api.vercel.app/invoices/status-count HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU3MTQ1MCwiZXhwIjoxNzM5NTc1MDUwfQ.mQ0b9wO8DrBYro8B0lC-sdiDCmZOLMDrQO44wa2K1dA
+
+### GET CUSTOMERS
+GET https://moises-api.vercel.app/customer HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU3MTQ1MCwiZXhwIjoxNzM5NTc1MDUwfQ.mQ0b9wO8DrBYro8B0lC-sdiDCmZOLMDrQO44wa2K1dA
+
+
+
+
+### CREATE INVOICE
+POST   https://moises-api.vercel.app/invoices HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU0NTY0MCwiZXhwIjoxNzM5NTQ5MjQwfQ.jKCqecZ04D4L0Ed_NN_a4V-ZtV1NoPXzBy2JDyuRlUI
+
+{
+    "amount":11,
+    "status":"paid",
+    "date":"2025-07-06",
+    "customer":"67ae8da8ae9dabe3aa81c4e7"
+}
+
