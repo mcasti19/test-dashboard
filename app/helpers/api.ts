@@ -3,7 +3,7 @@
 const headers = {
     "Content-type": "application/json",
     Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3YWU1OTY3YWZmMTY4N2MwMDdjOTk2ZSIsImVtYWlsIjoibmV4dFR1dG9yaWFsMkB0ZXN0LmNvbSIsInVzZXJuYW1lIjoibmV4dFR1dG9yaWFsMiIsImlhdCI6MTczOTU3NTU3OSwiZXhwIjoxNzM5NTc5MTc5fQ._KPkTFNE83qJEcLBnKAH6gGJpn6VfvFSPfAkYfq6R08"
+        "Bearer ""
 }
 
 
