@@ -2,8 +2,8 @@
 
 const headers = {
     "Content-type": "application/json",
-    Authorization:
-        "Bearer ""
+    Authorization: `${process.env.TOKEN}`
+
 }
 
 
@@ -26,8 +26,6 @@ export const fetchCardData = async () => {
         const totalPendingInvoices = resultInvoicesStatusCount.pending ?? "0";
 
         // console.log("RESUUUUULLLLTTTT", numberOfInvoices, numberOfCustomers, totalPaidInvoices, totalPendingInvoices);
-
-
         return {
             numberOfCustomers,
             numberOfInvoices,
@@ -45,12 +43,25 @@ export const fetchRevenues = async () => {
     try {
         const fetchRevenues = await fetch(`${process.env.API_URL}/revenues`, { headers });
         const resultRevenues = await fetchRevenues.json();
-        console.log("REVEEEENUESSSS",resultRevenues);
-        
+        console.log("REVEEEENUESSSS", resultRevenues);
+
         return resultRevenues;
 
     } catch (error) {
         console.log('error :>>', error);
         throw new Error('Failed to fetch Revenue Data')
+    }
+}
+
+
+export const fetchLatestInvoices = async () => {
+    try {
+        const fetchLatestInvoices = await fetch(`${process.env.API_URL}/invoices`, { headers });
+        const resultLatestInvoices = await fetchLatestInvoices.json();
+        return resultLatestInvoices;
+
+    } catch (error) {
+        console.log('error :>>', error);
+        throw new Error('Failed to fetch LastestInvoices Data')
     }
 }
