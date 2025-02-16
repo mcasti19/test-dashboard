@@ -25,7 +25,7 @@ const links = [
 
 export const NavLinks = () => {
     const pathName = usePathname();
-    // console.log(pathName);
+    console.log(pathName);
 
     return (
         <>

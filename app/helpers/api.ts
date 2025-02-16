@@ -25,7 +25,6 @@ export const fetchCardData = async () => {
         const totalPaidInvoices = resultInvoicesStatusCount.paid ?? "0";
         const totalPendingInvoices = resultInvoicesStatusCount.pending ?? "0";
 
-        // console.log("RESUUUUULLLLTTTT", numberOfInvoices, numberOfCustomers, totalPaidInvoices, totalPendingInvoices);
         return {
             numberOfCustomers,
             numberOfInvoices,
@@ -43,7 +42,9 @@ export const fetchRevenues = async () => {
     try {
         const fetchRevenues = await fetch(`${process.env.API_URL}/revenues`, { headers });
         const resultRevenues = await fetchRevenues.json();
-        console.log("REVEEEENUESSSS", resultRevenues);
+        console.log("Fetching Revenue data...11111111111111111111111");
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        console.log("Fetching Revenue data...2222222222222222222222");
 
         return resultRevenues;
 

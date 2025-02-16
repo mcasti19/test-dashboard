@@ -1,7 +1,10 @@
-import { bebas } from "../ui/fonts";
-import { CardsWrapper } from "../components/CardsWrapper";
-import { ChartWrapper } from "../components/ChartWrapper";
-import { InvoicesWrapper } from "../components/InvoicesWrapper";
+import { CardsWrapper } from "@/app/components/CardsWrapper";
+import { ChartWrapper } from "@/app/components/ChartWrapper";
+import { InvoicesWrapper } from "@/app/components/InvoicesWrapper";
+import { RevenueChartSkeleton } from "@/app/components/Skeletons";
+import { bebas } from "@/app/ui/fonts";
+import { Suspense } from "react";
+
 
 const Dashboard = () => {
 
@@ -16,14 +19,13 @@ const Dashboard = () => {
 
             <div className="grid grid-cols-1 mt-6 gap-6 md:grid-cols-4 lg:grid-cols-8 ">
                 <div className="w-full md:col-span-4">
-                    <h2 className={`${bebas.className} mb-4 text-xl md:text-2xl`} >Recent Revenues</h2>
-                    <ChartWrapper />
+                    <Suspense fallback={<RevenueChartSkeleton />}>
+                        <ChartWrapper />
+                    </Suspense>
                 </div>
 
-
                 <div className="w-full md:col-span-4">
-                    <h2 className={`${bebas.className} mb-4 text-xl md:text-2xl`} >Latest Invoices</h2>
-                    <InvoicesWrapper />
+                      <InvoicesWrapper />
                 </div>
 
             </div>
