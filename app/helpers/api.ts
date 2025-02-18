@@ -40,11 +40,11 @@ export const fetchCardData = async () => {
 
 export const fetchRevenues = async () => {
     try {
-        const fetchRevenues = await fetch(`${process.env.API_URL}/revenues`, { headers });
-        const resultRevenues = await fetchRevenues.json();
-        console.log("Fetching Revenue data...11111111111111111111111");
-        await new Promise(resolve => setTimeout(resolve, 3000));
-        console.log("Fetching Revenue data...2222222222222222222222");
+        const getRevenues = await fetch(`${process.env.API_URL}/revenues`, { headers });
+        const resultRevenues = await getRevenues.json();
+        // console.log("Fetching Revenue data...11111111111111111111111");
+        // await new Promise(resolve => setTimeout(resolve, 3000));
+        // console.log("Fetching Revenue data...2222222222222222222222");
 
         return resultRevenues;
 
@@ -57,8 +57,8 @@ export const fetchRevenues = async () => {
 
 export const fetchLatestInvoices = async () => {
     try {
-        const fetchLatestInvoices = await fetch(`${process.env.API_URL}/invoices`, { headers });
-        const resultLatestInvoices = await fetchLatestInvoices.json();
+        const getLatestInvoices = await fetch(`${process.env.API_URL}/invoices`, { headers });
+        const resultLatestInvoices = await getLatestInvoices.json();
         return resultLatestInvoices;
 
     } catch (error) {
@@ -68,15 +68,42 @@ export const fetchLatestInvoices = async () => {
 }
 
 export const fetchFilteredInvoices = async (query?: string, currentPage?: number) => {
-    console.log(query);
-    
+    console.log("QUERYYYYYYYYY", query);
+
     try {
-        const fetchFilteredInvoices = await fetch(`${process.env.API_URL}/invoices/paginate?q=${query}`, { headers });
-        const resultFilteredInvoices = await fetchFilteredInvoices.json();
+        const getFilteredInvoices = await fetch(`${process.env.API_URL}/invoices/paginate?q=${query}&page=${currentPage}`, { headers });
+        const resultFilteredInvoices = await getFilteredInvoices.json();
         return resultFilteredInvoices;
 
     } catch (error) {
         console.log('error :>>', error);
         throw new Error('Failed to fetch FilteredInvoices Data')
+    }
+}
+
+export const fecthInvoicesPages = async (query: string) => {
+
+    try {
+        const getInvoicesPages = await fetch(`${process.env.API_URL}/invoices/page-count?q=${query}`, { headers });
+        const resultGetInvoicesPages = await getInvoicesPages.json();
+        return resultGetInvoicesPages;
+
+    } catch (error) {
+        console.log('error :>>', error);
+        throw new Error('Failed to fetch Invoices Pages Data')
+    }
+}
+
+
+export const fecthCustomers = async () => {
+
+    try {
+        const getCustomers = await fetch(`${process.env.API_URL}/customer`, { headers });
+        const resultGetCustomers = await getCustomers.json();
+        return resultGetCustomers;
+
+    } catch (error) {
+        console.log('error :>>', error);
+        throw new Error('Failed to fetch Customers Data')
     }
 }

@@ -3,19 +3,24 @@ import { FilteredInvoicesWrapper } from "@/app/components/FilteredInvoicesWrappe
 import Search from "@/app/components/Search";
 import { InvoiceSkeleton } from "@/app/components/Skeletons";
 import { bebas } from "@/app/ui/fonts";
+import PaginationWrapper from "@/app/components/PaginationWrapper";
+import { fecthInvoicesPages } from "@/app/helpers/api";
+import { TableButtons } from "anjrot-components";
+import Link from "next/link";
 
 
 
 
 interface InvoicesProps {
-    searchParams?: Promise<{ query?: string }>
+    searchParams?: Promise<{ query?: string, page?: number }>
 }
 
 const Invoices: FC<InvoicesProps> = async ({ searchParams }) => {
     // await new Promise(resolve => setTimeout(resolve, 3000));
 
     const params = await searchParams;
-    console.log("params: ", params);
+    console.log("params: ", params?.query);
+    const totaPage = await fecthInvoicesPages(params?.query || "")
 
 
     return (
@@ -25,10 +30,17 @@ const Invoices: FC<InvoicesProps> = async ({ searchParams }) => {
             </div>
             <div className="flex items-center justify-center mt-4 gap-2 md:mt-8">
                 <Search />
+                <TableButtons ButtonType={Link} title="Create Invoice" href="/dashboard/invoices/create" />
             </div>
             <Suspense fallback={<InvoiceSkeleton />}>
-                <FilteredInvoicesWrapper query={params?.query} />
+                <FilteredInvoicesWrapper query={params?.query} page={params?.page} />
             </Suspense>
+
+            <div className="flex justify-center w-full  mt-5">
+                <PaginationWrapper totalPages={totaPage} />
+            </div>
+
+
         </div>
     )
 
