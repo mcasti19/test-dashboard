@@ -7,12 +7,14 @@ import PaginationWrapper from "@/app/components/PaginationWrapper";
 import { fecthInvoicesPages } from "@/app/helpers/api";
 import { TableButtons } from "anjrot-components";
 import Link from "next/link";
-
-
-
+import { Metadata } from "next";
 
 interface InvoicesProps {
     searchParams?: Promise<{ query?: string, page?: number }>
+}
+
+export const metadata: Metadata = {
+    title: "Invoices"
 }
 
 const Invoices: FC<InvoicesProps> = async ({ searchParams }) => {
@@ -21,7 +23,6 @@ const Invoices: FC<InvoicesProps> = async ({ searchParams }) => {
     const params = await searchParams;
     console.log("params: ", params?.query);
     const totaPage = await fecthInvoicesPages(params?.query || "")
-
 
     return (
         <div className="w-full">
@@ -39,8 +40,6 @@ const Invoices: FC<InvoicesProps> = async ({ searchParams }) => {
             <div className="flex justify-center w-full  mt-5">
                 <PaginationWrapper totalPages={totaPage} />
             </div>
-
-
         </div>
     )
 

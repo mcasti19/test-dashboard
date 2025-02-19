@@ -110,8 +110,13 @@ export const fecthCustomers = async () => {
 
 export const fecthInvoiceById = async (id: string) => {
 
+
     try {
         const getInvoiceById = await fetch(`${process.env.API_URL}/invoice/${id}`, { headers });
+        console.log("getInvoiceById>>>>", getInvoiceById);
+
+        if (getInvoiceById.status === 404) return null;
+        if (getInvoiceById.status !== 200) throw new Error("Error fetching Invoice!!!!");
         const resultGetInvoiceById = await getInvoiceById.json();
         return resultGetInvoiceById;
 

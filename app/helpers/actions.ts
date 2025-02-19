@@ -117,7 +117,7 @@ export const updateInvoice = async (prevState: CreateFormState, formData: FormDa
 
 
 export const deleteInvoice = async (formData: FormData) => {
-    throw new Error("probandito el Error en DELETE");
+    // throw new Error("probandito el Error en DELETE");
     const id = formData.get('invoiceId');
 
     try {

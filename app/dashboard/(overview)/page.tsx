@@ -4,6 +4,11 @@ import { InvoicesWrapper } from "@/app/components/InvoicesWrapper";
 import { RevenueChartSkeleton } from "@/app/components/Skeletons";
 import { bebas } from "@/app/ui/fonts";
 import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Dashboard",
+}
 
 
 const Dashboard = () => {
