@@ -107,3 +107,16 @@ export const fecthCustomers = async () => {
         throw new Error('Failed to fetch Customers Data')
     }
 }
+
+export const fecthInvoiceById = async (id: string) => {
+
+    try {
+        const getInvoiceById = await fetch(`${process.env.API_URL}/invoice/${id}`, { headers });
+        const resultGetInvoiceById = await getInvoiceById.json();
+        return resultGetInvoiceById;
+
+    } catch (error) {
+        console.log('error :>>', error);
+        throw new Error('Failed to fetch Invoice by ID Data')
+    }
+}

@@ -2,6 +2,7 @@ import { InvoiceTable } from "anjrot-components";
 import { fetchFilteredInvoices } from "../helpers/api"
 import Image from "next/image";
 import { FC } from 'react';
+import { deleteInvoice } from "../helpers/actions";
 
 
 interface FilteredInvoicesProps {
@@ -14,6 +15,12 @@ export const FilteredInvoicesWrapper: FC<FilteredInvoicesProps> = async ({ query
     const getFilteredInvoices = await fetchFilteredInvoices(query || "", page);
 
     return (
-        <InvoiceTable invoices={getFilteredInvoices} ImgComponent={Image} tableHeader={{ className: "text-white" }} className="bg-slate-700" />
+        <InvoiceTable
+            invoices={getFilteredInvoices}
+            ImgComponent={Image}
+            deleteAction={deleteInvoice}
+            tableHeader={{ className: "text-white" }}
+            className="bg-slate-700"
+        />
     )
 }
