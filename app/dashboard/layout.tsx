@@ -9,7 +9,7 @@ const DashboardLayout: FC<PropsWithChildren> = ({ children }) => {
             <aside className='w-full flex-none md:w-64 bg-slate-800'>
                 <SideNav />
             </aside>
-            <div className="flex-grow p6 md:overflow-y-auto md:p-12">
+            <div className="flex-grow p-6 md:overflow-y-auto md:p-12">
                 {children}
             </div>
         </div>
