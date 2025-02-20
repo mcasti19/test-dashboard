@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { Logo } from '../components';
 import LoginWrapper from '../components/LoginWrapper';
 
@@ -12,7 +12,9 @@ const Login = () => {
                         <Logo />
                     </div>
                 </div>
-                <LoginWrapper />
+                <Suspense>
+                    <LoginWrapper />
+                </Suspense>
             </div>
 
         </main>
