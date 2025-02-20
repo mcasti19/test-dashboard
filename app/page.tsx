@@ -13,7 +13,7 @@ const Home = () => {
                     <p className={`${bebas.className} text-xl text-gray-800 md:text-3xl md:leading-normal`}>
                         <strong>Welcome to my Dashboard</strong> Tutorial Next JS
                     </p>
-                    <a href="/dashboard" className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base">
+                    <a href="/login" className="flex items-center gap-5 self-start rounded-lg bg-blue-500 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-blue-400 md:text-base">
                         <span>Login</span> <BsArrowRight />
                     </a>
                 </div>

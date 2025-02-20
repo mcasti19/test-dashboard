@@ -1,24 +1,26 @@
-
-
-const headers = {
-    "Content-type": "application/json",
-    Authorization: `${process.env.TOKEN}`
-
-}
-
+import { auth } from "@/auth";
+import { authHeaders } from "./utils";
 
 export const fetchCardData = async () => {
+    const session = await auth();
+    console.log("session FetchCardData >> ", session?.user?.token);
+
     try {
         const [ getCustomerCount, getInvoicesCount, getInvoicesStatusCount ] = await Promise.all([
-            fetch(`${process.env.API_URL}/customer/count`, { headers }),
-            fetch(`${process.env.API_URL}/invoices/count`, { headers }),
-            fetch(`${process.env.API_URL}/invoices/status-count`, { headers }),
+            fetch(`${process.env.API_URL}/customer/count`, {
+                headers: authHeaders(session?.user?.token)
+            }),
+            fetch(`${process.env.API_URL}/invoices/count`, {
+                headers: authHeaders(session?.user?.token)
+            }),
+            fetch(`${process.env.API_URL}/invoices/status-count`, {
+                headers: authHeaders(session?.user?.token)
+            }),
         ])
 
         const resultCustomerCount = await getCustomerCount.json();
         const resultInvoicesCount = await getInvoicesCount.json();
         const resultInvoicesStatusCount = await getInvoicesStatusCount.json();
-
 
         const numberOfInvoices = Number(resultInvoicesCount ?? "0");
         const numberOfCustomers = Number(resultCustomerCount ?? "0");
@@ -39,12 +41,12 @@ export const fetchCardData = async () => {
 }
 
 export const fetchRevenues = async () => {
+    const session = await auth();
     try {
-        const getRevenues = await fetch(`${process.env.API_URL}/revenues`, { headers });
+        const getRevenues = await fetch(`${process.env.API_URL}/revenues`, {
+            headers: authHeaders(session?.user?.token)
+        });
         const resultRevenues = await getRevenues.json();
-        // console.log("Fetching Revenue data...11111111111111111111111");
-        // await new Promise(resolve => setTimeout(resolve, 3000));
-        // console.log("Fetching Revenue data...2222222222222222222222");
 
         return resultRevenues;
 
@@ -56,8 +58,11 @@ export const fetchRevenues = async () => {
 
 
 export const fetchLatestInvoices = async () => {
+    const session = await auth();
     try {
-        const getLatestInvoices = await fetch(`${process.env.API_URL}/invoices`, { headers });
+        const getLatestInvoices = await fetch(`${process.env.API_URL}/invoices`, {
+            headers: authHeaders(session?.user?.token)
+        });
         const resultLatestInvoices = await getLatestInvoices.json();
         return resultLatestInvoices;
 
@@ -68,10 +73,11 @@ export const fetchLatestInvoices = async () => {
 }
 
 export const fetchFilteredInvoices = async (query?: string, currentPage?: number) => {
-    console.log("QUERYYYYYYYYY", query);
-
+    const session = await auth();
     try {
-        const getFilteredInvoices = await fetch(`${process.env.API_URL}/invoices/paginate?q=${query}&page=${currentPage}`, { headers });
+        const getFilteredInvoices = await fetch(`${process.env.API_URL}/invoices/paginate?q=${query}&page=${currentPage}`, {
+            headers: authHeaders(session?.user?.token)
+        });
         const resultFilteredInvoices = await getFilteredInvoices.json();
         return resultFilteredInvoices;
 
@@ -82,9 +88,11 @@ export const fetchFilteredInvoices = async (query?: string, currentPage?: number
 }
 
 export const fecthInvoicesPages = async (query: string) => {
-
+    const session = await auth();
     try {
-        const getInvoicesPages = await fetch(`${process.env.API_URL}/invoices/page-count?q=${query}`, { headers });
+        const getInvoicesPages = await fetch(`${process.env.API_URL}/invoices/page-count?q=${query}`, {
+            headers: authHeaders(session?.user?.token)
+        });
         const resultGetInvoicesPages = await getInvoicesPages.json();
         return resultGetInvoicesPages;
 
@@ -94,11 +102,12 @@ export const fecthInvoicesPages = async (query: string) => {
     }
 }
 
-
 export const fecthCustomers = async () => {
-
+    const session = await auth();
     try {
-        const getCustomers = await fetch(`${process.env.API_URL}/customer`, { headers });
+        const getCustomers = await fetch(`${process.env.API_URL}/customer`, {
+            headers: authHeaders(session?.user?.token)
+        });
         const resultGetCustomers = await getCustomers.json();
         return resultGetCustomers;
 
@@ -109,10 +118,11 @@ export const fecthCustomers = async () => {
 }
 
 export const fecthInvoiceById = async (id: string) => {
-
-
+    const session = await auth();
     try {
-        const getInvoiceById = await fetch(`${process.env.API_URL}/invoice/${id}`, { headers });
+        const getInvoiceById = await fetch(`${process.env.API_URL}/invoice/${id}`, {
+            headers: authHeaders(session?.user?.token)
+        });
         console.log("getInvoiceById>>>>", getInvoiceById);
 
         if (getInvoiceById.status === 404) return null;

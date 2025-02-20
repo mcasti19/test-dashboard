@@ -5,9 +5,7 @@ import { bebas } from '../ui/fonts';
 
 export const InvoicesWrapper = async () => {
     const lastesInvoices = await fetchLatestInvoices();
-
     // console.log("LASTEST INVOICES: ", lastesInvoices);
-
 
     return (
         <>

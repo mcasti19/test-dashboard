@@ -18,10 +18,7 @@ export const metadata: Metadata = {
 }
 
 const Invoices: FC<InvoicesProps> = async ({ searchParams }) => {
-    // await new Promise(resolve => setTimeout(resolve, 3000));
-
     const params = await searchParams;
-    console.log("params: ", params?.query);
     const totaPage = await fecthInvoicesPages(params?.query || "")
 
     return (

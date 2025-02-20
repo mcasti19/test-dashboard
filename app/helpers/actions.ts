@@ -1,15 +1,12 @@
 'use server';
 
+import { auth, signIn } from '@/auth';
 import { CreateFormState } from 'anjrot-components';
+import { AuthError } from 'next-auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { z } from 'zod';
-
-const headers = {
-    "Content-type": "application/json",
-    Authorization: `${process.env.TOKEN}`
-
-}
+import { authHeaders } from './utils';
 
 const FormSchema = z.object({
     id: z.string(),
@@ -27,6 +24,7 @@ const CreateInvoice = FormSchema.omit({ id: true, date: true });
 const UpdateInvoice = FormSchema.omit({ date: true });
 
 export const createInvoice = async (prevState: CreateFormState, formData: FormData) => {
+    const session = await auth();
     console.log('Entrando a createInvoices');
 
     const validatedFields = CreateInvoice.safeParse({
@@ -34,7 +32,6 @@ export const createInvoice = async (prevState: CreateFormState, formData: FormDa
         amount: formData.get('amount'),
         status: formData.get('status'),
     });
-    // console.log('validatedFields: ', validatedFields);
 
     if (!validatedFields.success) {
         return {
@@ -54,10 +51,8 @@ export const createInvoice = async (prevState: CreateFormState, formData: FormDa
     }
 
     try {
-        console.log("headers >>>>", headers);
-
         await fetch(`${process.env.API_URL}/invoices/`, {
-            headers,
+            headers: authHeaders(session?.user?.token),
             method: "POST",
             body: JSON.stringify(body)
         })
@@ -72,6 +67,7 @@ export const createInvoice = async (prevState: CreateFormState, formData: FormDa
 }
 
 export const updateInvoice = async (prevState: CreateFormState, formData: FormData) => {
+    const session = await auth();
     console.log('Entrando a createInvoices a UPDATE INVOICES: ', formData);
 
     const validatedFields = UpdateInvoice.safeParse({
@@ -97,10 +93,8 @@ export const updateInvoice = async (prevState: CreateFormState, formData: FormDa
     }
 
     try {
-        console.log("headers >>>>", headers);
-
         await fetch(`${process.env.API_URL}/invoices/${id}`, {
-            headers,
+            headers: authHeaders(session?.user?.token),
             method: "PUT",
             body: JSON.stringify(body)
         })
@@ -110,29 +104,42 @@ export const updateInvoice = async (prevState: CreateFormState, formData: FormDa
             error
         }
     }
-
     revalidatePath('/dashboard/invoices');
     redirect('/dashboard/invoices')
 }
 
-
 export const deleteInvoice = async (formData: FormData) => {
+    const session = await auth();
     // throw new Error("probandito el Error en DELETE");
     const id = formData.get('invoiceId');
 
     try {
-        console.log("headers >>>>", headers);
-
         await fetch(`${process.env.API_URL}/invoices/${id}`, {
-            headers,
+            headers: authHeaders(session?.user?.token),
             method: "DELETE",
         })
         revalidatePath('/dashboard/invoices');
-        
+
     } catch (error) {
         return {
             message: 'Database Error: Failed Deleting Invoice',
             error
         }
+    }
+}
+
+export const authenticate = async (state: string | undefined, formdata: FormData) => {
+    try {
+        await signIn('credentials', formdata) // 1er paramtro es el Proveedor y el 2do lo que usaremos
+    } catch (error) {
+        if (error instanceof AuthError) {
+            switch (error.type) {
+                case 'CredentialsSignin':
+                    return 'Invalid Credentials';
+                default:
+                    return 'Something went wrong';
+            }
+        }
+        throw error;
     }
 }

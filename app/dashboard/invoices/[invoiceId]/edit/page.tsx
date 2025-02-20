@@ -21,7 +21,7 @@ const EditInvoice: FC<EditInvoicesProps> = async ({ params }) => {
             href: "/dashboard/invoices"
         },
         {
-            label: "Editing Invoices",
+            label: "Update Invoice",
             href: `/dashboard/invoices/${id}/edit`,
             active: true,
         }

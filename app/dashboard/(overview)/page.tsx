@@ -1,5 +1,5 @@
-import { CardsWrapper } from "@/app/components/CardsWrapper";
-import { ChartWrapper } from "@/app/components/ChartWrapper";
+import CardsWrapper from "@/app/components/CardsWrapper";
+import ChartWrapper from "@/app/components/ChartWrapper";
 import { InvoicesWrapper } from "@/app/components/InvoicesWrapper";
 import { RevenueChartSkeleton } from "@/app/components/Skeletons";
 import { bebas } from "@/app/ui/fonts";
@@ -12,9 +12,6 @@ export const metadata: Metadata = {
 
 
 const Dashboard = () => {
-
-
-
     return (
         <main>
             <h1 className={`${bebas.className} mb-4 text-xl md:text-2xl`}>DashBoard</h1>
@@ -30,15 +27,11 @@ const Dashboard = () => {
                 </div>
 
                 <div className="w-full md:col-span-4">
-                      <InvoicesWrapper />
+                    <InvoicesWrapper />
                 </div>
-
             </div>
-
-
         </main>
     )
-
-}
+};
 
 export default Dashboard;
