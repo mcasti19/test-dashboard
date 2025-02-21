@@ -13,6 +13,8 @@ interface FilteredInvoicesProps {
 
 export const FilteredInvoicesWrapper: FC<FilteredInvoicesProps> = async ({ query, page }) => {
     const getFilteredInvoices = await fetchFilteredInvoices(query || "", page);
+    console.log("INVOICES >>>> ", getFilteredInvoices);
+
 
     return (
         <InvoiceTable

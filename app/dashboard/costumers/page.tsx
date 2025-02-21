@@ -1,3 +1,5 @@
+import TableCustomers from "@/app/components/CustomerWrapper";
+import { fetchCustomers } from "@/app/helpers/api";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,6 +7,14 @@ export const metadata: Metadata = {
 }
 
 const Costumers = async () => {
-    return <h1>El Contenido de Costumers</h1>
+
+    const customers = await fetchCustomers();
+    console.log("CUSTOMERS >>> ", customers);
+
+
+    return (
+        <TableCustomers customers={customers} />
+    );
 }
 export default Costumers
+

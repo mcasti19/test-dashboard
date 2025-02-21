@@ -87,7 +87,7 @@ export const fetchFilteredInvoices = async (query?: string, currentPage?: number
     }
 }
 
-export const fecthInvoicesPages = async (query: string) => {
+export const fetchInvoicesPages = async (query: string) => {
     const session = await auth();
     try {
         const getInvoicesPages = await fetch(`${process.env.API_URL}/invoices/page-count?q=${query}`, {
@@ -102,22 +102,7 @@ export const fecthInvoicesPages = async (query: string) => {
     }
 }
 
-export const fecthCustomers = async () => {
-    const session = await auth();
-    try {
-        const getCustomers = await fetch(`${process.env.API_URL}/customer`, {
-            headers: authHeaders(session?.user?.token)
-        });
-        const resultGetCustomers = await getCustomers.json();
-        return resultGetCustomers;
-
-    } catch (error) {
-        console.log('error :>>', error);
-        throw new Error('Failed to fetch Customers Data')
-    }
-}
-
-export const fecthInvoiceById = async (id: string) => {
+export const fetchInvoiceById = async (id: string) => {
     const session = await auth();
     try {
         const getInvoiceById = await fetch(`${process.env.API_URL}/invoice/${id}`, {
@@ -135,3 +120,43 @@ export const fecthInvoiceById = async (id: string) => {
         throw new Error('Failed to fetch Invoice by ID Data')
     }
 }
+
+
+export const fetchCustomers = async () => {
+    const session = await auth();
+    try {
+        const getCustomers = await fetch(`${process.env.API_URL}/customer`, {
+            headers: authHeaders(session?.user?.token)
+        });
+        const resultGetCustomers = await getCustomers.json();
+        return resultGetCustomers;
+
+    } catch (error) {
+        console.log('error :>>', error);
+        throw new Error('Failed to fetch Customers Data')
+    }
+}
+
+
+
+//* USERS DATA
+export const fetchUser = async () => {
+    const session = await auth();
+    try {
+        const getUsers = await fetch(`${process.env.API_URL}/users`, {
+            headers: authHeaders(session?.user?.token)
+        });
+        const resultGetUsers = await getUsers.json();
+        return resultGetUsers;
+
+    } catch (error) {
+        console.log('error :>>', error);
+        throw new Error('Failed to fetch USERS Data')
+    }
+}
+
+
+
+
+
+

@@ -4,7 +4,7 @@ import Search from "@/app/components/Search";
 import { InvoiceSkeleton } from "@/app/components/Skeletons";
 import { bebas } from "@/app/ui/fonts";
 import PaginationWrapper from "@/app/components/PaginationWrapper";
-import { fecthInvoicesPages } from "@/app/helpers/api";
+import { fetchInvoicesPages } from "@/app/helpers/api";
 import { TableButtons } from "anjrot-components";
 import Link from "next/link";
 import { Metadata } from "next";
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 const Invoices: FC<InvoicesProps> = async ({ searchParams }) => {
     const params = await searchParams;
-    const totaPage = await fecthInvoicesPages(params?.query || "")
+    const totaPage = await fetchInvoicesPages(params?.query || "")
 
     return (
         <div className="w-full">

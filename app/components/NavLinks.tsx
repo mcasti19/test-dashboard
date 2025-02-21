@@ -2,7 +2,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { twMerge } from 'tailwind-merge'
-import { FaFileInvoice, FaHome, FaUsers } from "react-icons/fa"
+import { FaBuilding, FaFileInvoice, FaHome, FaShoppingCart,  FaUsers } from "react-icons/fa"
+import { BiSupport } from "react-icons/bi";
 
 
 const links = [
@@ -20,6 +21,31 @@ const links = [
         name: "Costumers",
         href: "/dashboard/costumers",
         icon: FaUsers
+    },
+    {
+        name: "Products",
+        href: "/dashboard/products",
+        icon: FaShoppingCart
+    },
+    {
+        name: "Companies",
+        href: "/dashboard/companies",
+        icon: FaBuilding
+    },
+    {
+        name: "Analytics",
+        href: "/dashboard/analytics",
+        icon: FaBuilding
+    },
+    {
+        name: "Team",
+        href: "/dashboard/team",
+        icon: FaUsers
+    },
+    {
+        name: "Support",
+        href: "/dashboard/support",
+        icon: BiSupport
     },
 ]
 
