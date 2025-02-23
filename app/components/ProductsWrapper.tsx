@@ -2,42 +2,75 @@
 import React, { FC } from 'react';
 import { Box } from "@mui/material";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { CustomerField } from 'anjrot-components';
 import Image from 'next/image';
 
+export declare type ProductField = {
+    _id: string;
+    title: string;
+    description: string;
+    price: string;
+    stock: number;
+    category: string;
+    tags: [];
+    status: boolean;
+    img_url: string;
+};
 
-const TableCustomers: FC<{ customers: CustomerField[] }> = ({ customers }) => {
-    const columns: GridColDef<CustomerField>[] = [
+const TableProducts: FC<{ products: ProductField[] }> = ({ products }) => {
+
+    const columns: GridColDef<ProductField>[] = [
         // { field: "_id", headerName: "ID", cellClassName: "name-column--cell" },
-        //TODO agregar columna ID auto-incremental
+
         {
-            field: "image_url",
-            headerName: "picture",
-            type: "string",
-            headerAlign: "left",    
-            align: "left",
+            field: "img_url",
+            headerName: "",
+            flex: 1,
             cellClassName: "name-column--cell",
             renderCell: (params) => (
                 <div className='flex items-center justify-center'>
-                    <Image src={params.value} alt="Imagen" width="40" height="40" className='rounded-full' />
+                    <Image src={params.value} alt="Imagen" width="40" height="40" className='' />
                 </div>
             ),
         },
         {
-            field: "name",
-            headerName: "Name",
+            field: "title",
+            headerName: "Titulo",
             flex: 1,
             cellClassName: "name-column--cell",
         },
         {
-            field: "email",
-            headerName: "Email",
+            field: "description",
+            headerName: "Descripción",
+            flex: 1,
+            cellClassName: "name-column--cell",
+        },
+        {
+            field: "price",
+            headerName: "Precio",
+            flex: 1,
+            cellClassName: "name-column--cell",
+        },
+        {
+            field: "stock",
+            headerName: "Cantidad Disp.",
+            flex: 1,
+            cellClassName: "name-column--cell",
+        },
+        {
+            field: "category",
+            headerName: "Categoria",
+            flex: 1,
+            cellClassName: "name-column--cell",
+        },
+        {
+            field: "tags",
+            headerName: "Tags",
             flex: 1,
             cellClassName: "name-column--cell",
         },
 
     ];
-    const getRowId = (row: CustomerField) => row._id;
+    const getRowId = (row: ProductField) => row._id;
     return (
         <Box m="20px">
             <Box
@@ -95,7 +128,7 @@ const TableCustomers: FC<{ customers: CustomerField[] }> = ({ customers }) => {
             >
                 <DataGrid
                     checkboxSelection
-                    rows={customers}
+                    rows={products}
                     columns={columns}
                     getRowId={getRowId}
                 />
@@ -104,4 +137,4 @@ const TableCustomers: FC<{ customers: CustomerField[] }> = ({ customers }) => {
     );
 }
 
-export default TableCustomers;
+export default TableProducts;

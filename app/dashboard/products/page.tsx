@@ -1,27 +1,19 @@
-import { Box, Typography, IconButton } from '@mui/material';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import React from 'react';
-import { bebas } from '@/app/ui/fonts';
+import TableProducts from '@/app/components/ProductsWrapper';
+import Search from '@/app/components/Search';
+import { fetchProducts, } from '@/app/helpers/api';
 
 
-const Products = () => {
+const Products = async () => {
+
+    const products = await fetchProducts();
+
+    console.log("PRODUCTOS >>>> ", products);
+
     return (
         <>
-            <Box className="flex flex-col max-w-80 border h-32 rounded-md p-3 bg-slate-700">
-                <Box className="flex items-center">
-                    <IconButton className='cursor-help'>
-                        <AttachMoneyIcon className='text-white' />
-                    </IconButton>
-                    <Typography fontFamily={bebas.className} className='text-white'>
-                        Titulo
-                    </Typography>
-                </Box>
-                <Box className="flex items-center justify-center text-center border grow rounded-md bg-white">
-                    <Typography>
-                        Cantidad
-                    </Typography>
-                </Box>
-            </Box >
+            <h1>Productos</h1>
+            <Search />
+            <TableProducts products={products} />
         </>
     )
 }

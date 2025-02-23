@@ -155,6 +155,28 @@ export const fetchUser = async () => {
     }
 }
 
+//* PRODUCTS DATA
+export const fetchProducts = async () => {
+    const session = await auth();
+    console.log("Entrnado a FETCH PRODUCTOS, SESIONNNNN: ", session);
+
+    try {
+        const getProducts = await fetch(`${process.env.API_URL}/products`, {
+            headers: authHeaders(session?.user?.token)
+        });
+
+        
+        const resultGetProducts = await getProducts.json();
+        console.log("MOSRTANDO LOS PRODUCTOS>>>>:", resultGetProducts);
+        return resultGetProducts;
+
+    } catch (error) {
+        console.log('error :>>', error);
+        throw new Error('Failed to fetch Products Data')
+    }
+}
+
+
 
 
 

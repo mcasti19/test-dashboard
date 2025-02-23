@@ -12,8 +12,6 @@ export declare type UserField = {
     email: string;
     username: string;
     roles: []
-
-
 };
 
 
